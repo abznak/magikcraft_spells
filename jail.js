@@ -1,11 +1,42 @@
 var magik = magikcraft.io;
 
-function jail(r, typ) {
+// r - radius
+// typ - material type (e.g. FIRE, TNT)
+// force - 1 - replace even solid blocks, ! - replace only solid blocks
+// fire - 1 - set the resulting sphere on fire, o - surround the resulting sphere in obsidian
+function jail(r, typ, force, fire) {
     r = parseInt(r) || 10;
-    sphere(magik.aspecto().getBlock(), r, typ);
-}
-function sphere(block, r, typ) {    
     typ = typ || 'LEAVES';
+    var block = magik.aspecto().getBlock();
+    drawSphere(block, r, typ, force);
+    if (fire) {
+        if (fire == 'o') {
+            drawSphere(block, r+2, 'OBSIDIAN', false);
+        } else if (fire == 'g') {
+            drawSphere(block, r+2, 'GLASS', false);
+        } else {
+            drawSphere(block.getRelative(0, 2, 0), r, 'FIRE', false);
+        }
+    }
+}
+function drawSphere(block, r, typ, force) {
+    sphere(block, r, function(block, x,y,z) {
+        var doit = false;
+        if (force == '1') {
+            doit = true;
+        } else {
+            doit = !block.getType().isSolid();
+            if (force == '!') {
+                doit = !doit;
+            }
+        }
+        if (doit) {
+            block.setType(org.bukkit.Material[typ]);
+        }
+    });
+}
+function sphere(block, r, fn) {    
+
     var max2 = (r+1) * (r+1);
     var min2 = (r-1) * (r-1);
     for (var x = -r; x < r+1; x++) {
@@ -14,8 +45,7 @@ function sphere(block, r, typ) {
                 var dist2 = x*x+y*y+z*z;
                 
                 if (min2 <= dist2 && dist2 <= max2) {
-                    
-                    block.getRelative(x,y,z).setType(org.bukkit.Material[typ]);
+                    fn(block.getRelative(x,y,z), x,y,z);
                 }
             }
         }
