@@ -5,7 +5,7 @@ var magik = magikcraft.io;
 function spawn(typ, n, times, baseloc){
     sender = server.getPlayer(sender.getName());
 	if (typ == '?') {
-		magik.dixit("/spawn <typ> <n> <times>");
+		magik.dixit("/cast spawn <typ> <n> <times>");
 		magik.dixit("typ - ZOMBIE or CREEPER etc, dot (.) for a mix");
 		magik.dixit("n - number to spawn per wave");
 		magik.dixit("times - number of waves");

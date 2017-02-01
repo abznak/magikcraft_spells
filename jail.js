@@ -1,10 +1,18 @@
 var magik = magikcraft.io;
 
-// r - radius
-// typ - material type (e.g. FIRE, TNT)
-// force - 1 - replace even solid blocks, ! - replace only solid blocks
-// fire - 1 - set the resulting sphere on fire, o - surround the resulting sphere in obsidian
 function jail(r, typ, force, fire) {
+		if (r == '?') {
+			magik.dixit("/cast jail <r> <typ> <force> <fire>");
+			magik.dixit("r - radius");
+			magik.dixit("typ - material type (e.g. FIRE, TNT)");
+			magik.dixit("force - ");
+			magik.dixit("   1 - replace even solid blocks");
+			magik.dixit("   ! - replace only solid blocks");
+			magik.dixit("fire - 
+			magik.dixit("   1 - set the resulting sphere on fire");
+			magik.dixit("   o - surround the resulting sphere in obsidian");
+			return;
+		}
     r = parseInt(r) || 10;
     typ = typ || 'LEAVES';
     var block = magik.aspecto().getBlock();
