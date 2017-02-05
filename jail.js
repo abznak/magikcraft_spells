@@ -8,7 +8,7 @@ function jail(r, typ, force, fire) {
 			magik.dixit("force - ");
 			magik.dixit("   1 - replace even solid blocks");
 			magik.dixit("   ! - replace only solid blocks");
-			magik.dixit("fire - 
+			magik.dixit("fire - ");
 			magik.dixit("   1 - set the resulting sphere on fire");
 			magik.dixit("   o - surround the resulting sphere in obsidian");
 			return;
