@@ -42,6 +42,6 @@ function scale(r, from, to) {
     return Math.floor(r*(to - from)+from)
 }
 function rndBlock(radius, height) {
-    return sender.location.getBlock().getRelative(rnorm(0, radius/5), height+runif(0, radius*3), rnorm(0, radius/5));
+    return magik.getSender().getLocation().getBlock().getRelative(rnorm(0, radius/5), height+runif(0, radius*3), rnorm(0, radius/5));
 }
 
