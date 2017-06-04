@@ -1,11 +1,9 @@
-var magik = magikcraft.io;
+const magik = magikcraft.io;
 
 function path(typ){
     typ = typ || "STONE"
-    
-    blocks = sender.getLineOfSight(null,50);
-    blocks.forEach(function(b){
-        b.getRelative(0, -2, 0).setType(org.bukkit.Material[typ]);
-    });    
+    const Material = magik.type("Material");
+    const blocks = magik.getSender().getLineOfSight(null,50);
+    blocks.forEach(b => b.getRelative(0, -2, 0).setType(Material[typ]));    
        
 }
