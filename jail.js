@@ -1,4 +1,4 @@
-var magik = magikcraft.io;
+const magik = magikcraft.io;
 
 function jail(r, typ, force, fire) {
 		if (r == '?') {
@@ -28,6 +28,7 @@ function jail(r, typ, force, fire) {
     }
 }
 function drawSphere(block, r, typ, force) {
+    const Material = magik.type("Material");
     sphere(block, r, function(block, x,y,z) {
         var doit = false;
         if (force == '1') {
@@ -39,7 +40,7 @@ function drawSphere(block, r, typ, force) {
             }
         }
         if (doit) {
-            block.setType(org.bukkit.Material[typ]);
+            block.setType(Material[typ]);
         }
     });
 }
@@ -61,13 +62,11 @@ function sphere(block, r, fn) {
 
 }
 
-
 function randn_bm() {
     var u = 1 - Math.random(); // Subtraction to flip [0, 1) to (0, 1].
     var v = 1 - Math.random();
     return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
 }
-
 
 function rnorm_unit(count) {
     var ret = 0;
