@@ -1,12 +1,9 @@
 var magik = magikcraft.io;
 
 // explode  
-function e(n, repeats, delay) {
-    var sender2 = sender;
-    n = parseInt(n) || 30;
-    repeats = parseInt(repeats) || 1;
-    delay = parseInt(delay) || 200;
-    sender.location.getWorld().createExplosion(magik.aspecto(),n);        
+function e(n=30, repeats=1, delay=200) {
+    const sender = magik.getSender();
+    sender.getLocation().getWorld().createExplosion(magik.aspecto(),n);        
     repeats--;
     //magik.dixit(sender.isSneaking() ? "yes" : "no");
     if (sender.isSneaking()) {
@@ -15,9 +12,8 @@ function e(n, repeats, delay) {
     }
     if (repeats > 0) {
         var task = magik.setTimeout(
-            function() {
-                sender = sender2;
-                e(n, repeats, delay);
+            () => {
+                e(n.toString(), repeats, delay);
             },
             delay
         );
